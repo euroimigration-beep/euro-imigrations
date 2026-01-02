@@ -6,226 +6,220 @@
 <title>Euro-Imigrations</title>
 
 <style>
-:root{
-  --bg:#2f343a;
-  --block:#3b4046;
-  --text:#ffffff;
-  --muted:#cfd3d7;
-  --blue:#4fc3f7;
-  --purple:#b388ff;
-  --green:#4caf50;
-  --btn:#25D366;
-}
-
-*{box-sizing:border-box;font-family:system-ui,Segoe UI,Roboto,Arial;}
-
+/* ===== BASE ===== */
 body{
   margin:0;
-  background:var(--bg);
-  color:var(--text);
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#262a2f;
-  padding:14px 18px;
-}
-
-.header{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo{
-  height:42px;
-}
-
-.site-name{
-  font-size:20px;
-  font-weight:700;
-}
-
-.container{
-  max-width:700px;
-  margin:auto;
-  padding:20px;
-}
-
-.block{
-  background:var(--block);
-  border-radius:22px;
-  padding:20px;
-  margin-bottom:20px;
-}
-
-.center{text-align:center;}
-
-.lang-btn{
-  display:block;
-  width:100%;
-  padding:18px;
-  border-radius:22px;
-  font-size:18px;
-  font-weight:700;
-  border:none;
-  cursor:pointer;
-  margin:10px 0;
-}
-
-.en{background:var(--blue);color:#000;}
-.fr{background:var(--green);color:#000;}
-
-.badge{
-  border-radius:18px;
-  padding:16px;
-  margin:12px 0;
-  font-weight:600;
-}
-
-.blue{background:var(--blue);color:#000;}
-.purple{background:var(--purple);color:#000;}
-.green{background:var(--green);color:#000;}
-
-input,select{
-  width:100%;
-  padding:14px;
-  border-radius:18px;
-  border:none;
-  margin-bottom:12px;
-  font-size:16px;
-}
-
-.whatsapp{
-  background:var(--btn);
+  font-family: Arial, sans-serif;
+  background:#55d6d1;
   color:#000;
-  font-size:18px;
-  font-weight:800;
-  padding:18px;
-  border-radius:24px;
-  border:none;
-  width:100%;
-  cursor:pointer;
 }
 
-footer{
+/* ===== HEADER FIXE ===== */
+.header-fixed{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:#2f3b40;
+  color:#fff;
   text-align:center;
-  color:var(--muted);
-  font-size:14px;
+  padding:14px 0;
+  font-weight:bold;
+  letter-spacing:1px;
+  z-index:1000;
+}
+
+/* ESPACE POUR HEADER */
+.spacer{
+  height:70px;
+}
+
+/* ===== LOGO ===== */
+.logo-container{
+  text-align:center;
   margin:30px 0;
 }
+.logo-container img{
+  width:130px;
+}
+
+/* ===== BLOCS ===== */
+.block{
+  width:88%;
+  margin:20px auto;
+  padding:20px;
+  border-radius:25px;
+  text-align:center;
+  font-weight:bold;
+}
+.block.blue{ background:#a9e8ff; }
+.block.purple{ background:#d6c2ff; }
+.block.green{ background:#b6f0c5; }
+
+.block p{
+  margin-top:10px;
+  font-weight:normal;
+}
+
+/* ===== NOTICE ===== */
+.notice{
+  width:80%;
+  margin:30px auto;
+  background:#fff;
+  padding:15px;
+  border-radius:18px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* ===== FORMULAIRE ===== */
+.form-box{
+  width:88%;
+  margin:0 auto;
+  padding:25px 15px;
+  background:#ffffff;
+  border-radius:30px;
+}
+
+/* QUESTION */
+.question{
+  margin:20px 0;
+}
+.question-number{
+  font-weight:bold;
+  margin-bottom:8px;
+}
+.question input{
+  width:92%;
+  padding:15px;
+  border:none;
+  border-radius:22px;
+  background:#f1f1f1;
+  font-size:15px;
+}
+
+/* ===== BOUTON ===== */
+.btn{
+  display:block;
+  width:85%;
+  margin:35px auto;
+  padding:18px;
+  background:#25d366;
+  color:#000;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  border-radius:14px;
+  text-decoration:none;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  font-size:14px;
+  margin:40px 0 20px;
+}
 </style>
-</head>
-
-<body>
-
-<header>
-  <div class="header">
-    <img src="logo.png" class="logo">
-    <div class="site-name">EURO-IMIGRATIONS</div>
-  </div>
-</header>
-
-<div class="container" id="langChoice">
-  <div class="block center">
-    <p>Veuillez choisir votre langue</p>
-    <button class="lang-btn en" onclick="setLang('en')">English</button>
-    <button class="lang-btn fr" onclick="setLang('fr')">Français</button>
-  </div>
-</div>
-
-<div class="container" id="content" style="display:none">
-
-  <div class="block">
-    <div class="badge blue" id="b1"></div>
-    <div class="badge purple" id="b2"></div>
-    <div class="badge green" id="b3"></div>
-  </div>
-
-  <div class="block">
-    <p id="formText"></p>
-
-    <input id="name" placeholder="">
-    <input id="job" placeholder="">
-    <input id="country" placeholder="">
-    <input id="destination" placeholder="">
-    <select id="language">
-      <option>Français</option>
-      <option>Anglais</option>
-      <option>Autre</option>
-    </select>
-
-    <button class="whatsapp" onclick="sendWhatsApp()" id="cta"></button>
-  </div>
-
-  <footer>
-    Merci d’avoir choisi Euro-Imigrations<br>
-    © 2026 Euro-Imigrations
-  </footer>
-
-</div>
 
 <script>
-let lang="fr";
-const phone="237696246114";
-
-const texts={
-fr:{
-b1:"Orientation fiable et sécurisée",
-b2:"Accompagnement professionnel",
-b3:"Connexion directe avec un agent",
-form:"Veuillez remplir ce formulaire afin d’être orienté efficacement.",
-cta:"Discuter avec un agent",
-ph:{
-name:"Nom et prénom",
-job:"Profession actuelle",
-country:"Pays d’origine",
-destination:"Pays de destination souhaité"
-}
-},
-en:{
-b1:"Reliable and secure guidance",
-b2:"Professional support",
-b3:"Direct connection with an agent",
-form:"Please fill in this form for proper guidance.",
-cta:"Chat with an agent",
-ph:{
-name:"Full name",
-job:"Current occupation",
-country:"Country of origin",
-destination:"Desired destination country"
-}
-}
-};
-
-function setLang(l){
-lang=l;
-document.getElementById("langChoice").style.display="none";
-document.getElementById("content").style.display="block";
-const t=texts[l];
-b1.innerText=t.b1;
-b2.innerText=t.b2;
-b3.innerText=t.b3;
-formText.innerText=t.form;
-cta.innerText=t.cta;
-name.placeholder=t.ph.name;
-job.placeholder=t.ph.job;
-country.placeholder=t.ph.country;
-destination.placeholder=t.ph.destination;
-}
-
 function sendWhatsApp(){
-const msg=`Bonjour, je souhaite des informations sur l'immigration vers l'Europe.
-Nom: ${name.value}
-Profession: ${job.value}
-Pays d'origine: ${country.value}
-Destination souhaitée: ${destination.value}
-Langue: ${language.value}`;
-window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+  var nom = document.getElementById("q1").value;
+  var travail = document.getElementById("q2").value;
+  var origine = document.getElementById("q3").value;
+  var destination = document.getElementById("q4").value;
+  var langue = document.getElementById("q5").value;
+
+  var message =
+  "Bonjour, je souhaite en savoir plus sur l'immigration vers l'Europe.%0A%0A"+
+  "Nom & Prénom : "+nom+"%0A"+
+  "Profession : "+travail+"%0A"+
+  "Pays d'origine : "+origine+"%0A"+
+  "Pays de destination : "+destination+"%0A"+
+  "Langue parlée : "+langue;
+
+  var phone = "237696246114";
+  window.open("https://wa.me/"+phone+"?text="+message, "_blank");
 }
 </script>
+
+</head>
+<body>
+
+<div class="header-fixed">EURO-IMIGRATIONS</div>
+<div class="spacer"></div>
+
+<div class="logo-container">
+  <img src="logo.png" alt="Euro-Imigrations Logo">
+</div>
+
+<div class="block blue">
+  POURQUOI NOUS CHOISIR
+  <p>
+  1. Assistance pour le billet d’avion<br>
+  2. Aide au logement à l’arrivée<br>
+  3. Orientation administrative complète<br>
+  4. Informations fiables et transparentes<br>
+  5. Accompagnement personnalisé
+  </p>
+</div>
+
+<div class="block purple">
+  ACCOMPAGNEMENT PROFESSIONNEL
+  <p>
+  Avec Euro-Imigrations, vous bénéficiez d’un accompagnement professionnel structuré,
+  du début de votre projet jusqu’à votre voyage.
+  </p>
+</div>
+
+<div class="block green">
+  SUIVI HUMAIN & CONNEXION DIRECTE
+  <p>
+  Un suivi humain, personnalisé, avec une connexion directe à un agent disponible
+  pour vous orienter efficacement.
+  </p>
+</div>
+
+<div class="notice">
+  Veuillez remplir ce formulaire afin d’être orienté efficacement.
+</div>
+
+<div class="form-box">
+
+  <div class="question">
+    <div class="question-number">1</div>
+    <input id="q1" type="text" placeholder="Nom & Prénom">
+  </div>
+
+  <div class="question">
+    <div class="question-number">2</div>
+    <input id="q2" type="text" placeholder="Profession actuelle">
+  </div>
+
+  <div class="question">
+    <div class="question-number">3</div>
+    <input id="q3" type="text" placeholder="Pays d’origine">
+  </div>
+
+  <div class="question">
+    <div class="question-number">4</div>
+    <input id="q4" type="text" placeholder="Pays de destination souhaité">
+  </div>
+
+  <div class="question">
+    <div class="question-number">5</div>
+    <input id="q5" type="text" placeholder="Langue parlée">
+  </div>
+
+</div>
+
+<a class="btn" href="javascript:void(0)" onclick="sendWhatsApp()">
+  Discuter avec un agent
+</a>
+
+<footer>
+  Merci d’avoir choisi Euro-Imigrations<br>
+  © 2026 Euro-Imigrations
+</footer>
 
 </body>
 </html>
