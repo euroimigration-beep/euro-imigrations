@@ -1,180 +1,231 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Euro-Imigrations – Aide à l’immigration vers l’Europe</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Euro-Imigrations</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #f2f4f7;
-      color: #111;
-    }
+<style>
+:root{
+  --bg:#2f343a;
+  --block:#3b4046;
+  --text:#ffffff;
+  --muted:#cfd3d7;
+  --blue:#4fc3f7;
+  --purple:#b388ff;
+  --green:#4caf50;
+  --btn:#25D366;
+}
 
-    header {
-      background: linear-gradient(135deg, #0b2e59, #123d7a);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
+*{box-sizing:border-box;font-family:system-ui,Segoe UI,Roboto,Arial;}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: 1px;
-    }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    header p {
-      margin-top: 10px;
-      font-size: 16px;
-      opacity: 0.95;
-    }
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#262a2f;
+  padding:14px 18px;
+}
 
-    .container {
-      max-width: 600px;
-      margin: -30px auto 40px;
-      padding: 20px;
-    }
+.header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      margin-bottom: 25px;
-    }
+.logo{
+  height:42px;
+}
 
-    .card h2 {
-      margin-top: 0;
-      font-size: 20px;
-    }
+.site-name{
+  font-size:20px;
+  font-weight:700;
+}
 
-    .bubble {
-      width: 100%;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      border-radius: 16px;
-      border: 1px solid #ddd;
-      font-size: 15px;
-      background: #fafafa;
-    }
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:20px;
+}
 
-    select.bubble {
-      appearance: none;
-    }
+.block{
+  background:var(--block);
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:20px;
+}
 
-    .cta {
-      display: block;
-      text-align: center;
-      background: #25D366;
-      color: white;
-      text-decoration: none;
-      padding: 16px;
-      border-radius: 16px;
-      font-size: 17px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+.center{text-align:center;}
 
-    .cta:hover {
-      background: #1ebe5b;
-    }
+.lang-btn{
+  display:block;
+  width:100%;
+  padding:18px;
+  border-radius:22px;
+  font-size:18px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  margin:10px 0;
+}
 
-    .section {
-      background: white;
-      border-radius: 18px;
-      padding: 25px 20px;
-      margin-bottom: 25px;
-    }
+.en{background:var(--blue);color:#000;}
+.fr{background:var(--green);color:#000;}
 
-    .section h3 {
-      margin-top: 0;
-      font-size: 18px;
-    }
+.badge{
+  border-radius:18px;
+  padding:16px;
+  margin:12px 0;
+  font-weight:600;
+}
 
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #777;
-      padding: 20px;
-    }
-  </style>
+.blue{background:var(--blue);color:#000;}
+.purple{background:var(--purple);color:#000;}
+.green{background:var(--green);color:#000;}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border-radius:18px;
+  border:none;
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+.whatsapp{
+  background:var(--btn);
+  color:#000;
+  font-size:18px;
+  font-weight:800;
+  padding:18px;
+  border-radius:24px;
+  border:none;
+  width:100%;
+  cursor:pointer;
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  margin:30px 0;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>EURO-IMIGRATIONS</h1>
-  <p>Aide & orientation pour l’immigration vers l’Europe</p>
+  <div class="header">
+    <img src="logo.png" class="logo">
+    <div class="site-name">EURO-IMIGRATIONS</div>
+  </div>
 </header>
 
-<div class="container">
+<div class="container" id="langChoice">
+  <div class="block center">
+    <p>Veuillez choisir votre langue</p>
+    <button class="lang-btn en" onclick="setLang('en')">English</button>
+    <button class="lang-btn fr" onclick="setLang('fr')">Français</button>
+  </div>
+</div>
 
-  <!-- QUESTIONNAIRE SIMPLE -->
-  <div class="card">
-    <h2>Votre situation</h2>
+<div class="container" id="content" style="display:none">
 
-    <input class="bubble" type="text" placeholder="Pays actuel">
-    <input class="bubble" type="number" placeholder="Âge">
+  <div class="block">
+    <div class="badge blue" id="b1"></div>
+    <div class="badge purple" id="b2"></div>
+    <div class="badge green" id="b3"></div>
+  </div>
 
-    <select class="bubble">
-      <option>Projet principal</option>
-      <option>Travail</option>
-      <option>Études</option>
-      <option>Regroupement familial</option>
+  <div class="block">
+    <p id="formText"></p>
+
+    <input id="name" placeholder="">
+    <input id="job" placeholder="">
+    <input id="country" placeholder="">
+    <input id="destination" placeholder="">
+    <select id="language">
+      <option>Français</option>
+      <option>Anglais</option>
       <option>Autre</option>
     </select>
 
-    <select class="bubble">
-      <option>Langue préférée</option>
-      <option>Français</option>
-      <option>Anglais</option>
-    </select>
-
-<a class="cta"
-href="https://wa.me/237696246114?text=Bonjour%20je%20souhaite%20avoir%20des%20informations%20sur%20l%27immigration%20vers%20l%27Europe"
-target="_blank">
-💬 Parler à un conseiller
-</a>
+    <button class="whatsapp" onclick="sendWhatsApp()" id="cta"></button>
   </div>
 
-  <!-- DESCRIPTION -->
-  <div class="section">
-    <h3>Pourquoi Euro-Imigrations ?</h3>
-    <p>
-      Euro-Imigrations est une plateforme d’information et d’orientation
-      destinée aux personnes souhaitant immigrer vers l’Europe.
-      Nous accompagnons principalement les candidats originaires d’Afrique
-      dans la compréhension des démarches, des opportunités et des exigences
-      liées à l’immigration.
-    </p>
-  </div>
-
-  <div class="section">
-    <h3>Notre mission</h3>
-    <p>
-      Faciliter l’accès à une information claire, fiable et compréhensible.
-      Mettre les candidats en relation directe avec des conseillers
-      afin d’éviter les erreurs, les arnaques et les mauvaises orientations.
-    </p>
-  </div>
-
-  <div class="section">
-    <h3>Comment ça fonctionne ?</h3>
-    <p>
-      1. Vous consultez la plateforme<br>
-      2. Vous cliquez sur le bouton WhatsApp<br>
-      3. Vous échangez directement avec un conseiller Euro-Imigrations
-    </p>
-  </div>
+  <footer>
+    Merci d’avoir choisi Euro-Imigrations<br>
+    © 2026 Euro-Imigrations
+  </footer>
 
 </div>
 
-<footer>
-  © 2026 Euro-Imigrations — Plateforme indépendante d’orientation
-</footer>
+<script>
+let lang="fr";
+const phone="237696246114";
+
+const texts={
+fr:{
+b1:"Orientation fiable et sécurisée",
+b2:"Accompagnement professionnel",
+b3:"Connexion directe avec un agent",
+form:"Veuillez remplir ce formulaire afin d’être orienté efficacement.",
+cta:"Discuter avec un agent",
+ph:{
+name:"Nom et prénom",
+job:"Profession actuelle",
+country:"Pays d’origine",
+destination:"Pays de destination souhaité"
+}
+},
+en:{
+b1:"Reliable and secure guidance",
+b2:"Professional support",
+b3:"Direct connection with an agent",
+form:"Please fill in this form for proper guidance.",
+cta:"Chat with an agent",
+ph:{
+name:"Full name",
+job:"Current occupation",
+country:"Country of origin",
+destination:"Desired destination country"
+}
+}
+};
+
+function setLang(l){
+lang=l;
+document.getElementById("langChoice").style.display="none";
+document.getElementById("content").style.display="block";
+const t=texts[l];
+b1.innerText=t.b1;
+b2.innerText=t.b2;
+b3.innerText=t.b3;
+formText.innerText=t.form;
+cta.innerText=t.cta;
+name.placeholder=t.ph.name;
+job.placeholder=t.ph.job;
+country.placeholder=t.ph.country;
+destination.placeholder=t.ph.destination;
+}
+
+function sendWhatsApp(){
+const msg=`Bonjour, je souhaite des informations sur l'immigration vers l'Europe.
+Nom: ${name.value}
+Profession: ${job.value}
+Pays d'origine: ${country.value}
+Destination souhaitée: ${destination.value}
+Langue: ${language.value}`;
+window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+}
+</script>
 
 </body>
-  </html>
+</html>
