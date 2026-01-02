@@ -1,233 +1,246 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Euro-Imigrations</title>
 
 <style>
-/* ===== BASE ===== */
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f2f2f2;
-  color: #1f2933;
+  font-family: Arial, sans-serif;
+  background: #5fe0e0;
+  color: #003333;
 }
 
-/* ===== HEADER FIXE ===== */
+/* HEADER FIXE */
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: #1f2933;
-  color: white;
-  padding: 12px 20px;
-  font-size: 18px;
+  background: #5fe0e0;
+  text-align: center;
+  padding: 12px;
   font-weight: bold;
   z-index: 1000;
 }
 
-/* ===== CONTENU ===== */
+/* LANGUE */
+.lang {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+}
+.lang button {
+  border: none;
+  background: #003333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* CONTENU */
 .container {
   margin-top: 80px;
   padding: 20px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ===== LOGO ===== */
-.logo {
   text-align: center;
-  margin: 30px 0;
-}
-.logo img {
-  max-width: 180px;
 }
 
-/* ===== BLOCS ===== */
+.logo {
+  width: 140px;
+  margin: 20px auto;
+}
+
+/* BLOCS */
 .block {
-  background: #ffffff;
-  border-radius: 18px;
+  border-radius: 40px;
   padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin: 20px auto;
+  max-width: 500px;
+}
+.gray { background: #6b8f8f; }
+.beige { background: #d2b48c; }
+
+/* QUESTIONS */
+.form-box {
+  background: #4fbfc0;
+  border-radius: 30px;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
 }
 
-/* ===== TITRES ===== */
-h2 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-/* ===== WHY US ===== */
-.why {
-  display: grid;
-  gap: 15px;
-}
-.why div {
-  border-radius: 16px;
-  padding: 15px;
-  color: white;
-}
-.w1 { background: #38bdf8; }
-.w2 { background: #8b5cf6; }
-.w3 { background: #22c55e; }
-
-/* ===== FORM ===== */
 .question {
-  margin-bottom: 18px;
+  margin-bottom: 15px;
+  text-align: left;
 }
-.question label {
+.question span {
   font-weight: bold;
-  display: block;
-  margin-bottom: 6px;
 }
 .question input {
   width: 100%;
-  padding: 14px;
-  border-radius: 14px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-/* ===== BUTTONS ===== */
-button {
-  width: 100%;
-  padding: 16px;
-  font-size: 18px;
+  padding: 12px;
   border-radius: 20px;
   border: none;
+  margin-top: 6px;
+}
+
+/* BOUTONS */
+.btn-next, .btn-whatsapp {
+  display: inline-block;
+  margin: 25px auto;
+  padding: 15px 40px;
+  border-radius: 40px;
+  border: none;
+  font-size: 18px;
   cursor: pointer;
-  margin-top: 15px;
 }
 
-.btn-lang {
-  background: #1f2933;
+.btn-next {
+  background: linear-gradient(135deg, #6a5acd, #48c6ef);
   color: white;
 }
 
-.btn-wa {
-  background: #25d366;
+.btn-whatsapp {
+  background: #25D366;
   color: white;
-  font-weight: bold;
+  text-decoration: none;
 }
 
-/* ===== FOOTER ===== */
+.hidden {
+  display: none;
+}
+
 footer {
+  margin: 40px 0;
   text-align: center;
   font-size: 14px;
-  color: #555;
-  margin: 30px 0;
 }
 </style>
 </head>
 
 <body>
 
-<header>Euro-Imigrations</header>
+<header>
+  Euro-Imigrations
+  <div class="lang">
+    <button onclick="setLang('fr')">FR</button>
+    <button onclick="setLang('de')">DE</button>
+  </div>
+</header>
 
 <div class="container">
 
-<!-- LOGO -->
-<div class="logo">
-  <img src="logo.png" alt="Euro-Imigrations">
-</div>
+  <!-- LOGO -->
+  <img src="logo.png" class="logo" alt="Euro-Imigrations">
 
-<!-- LANGUAGE -->
-<div class="block">
-  <button class="btn-lang" onclick="setLang('fr')">Français</button>
-  <button class="btn-lang" onclick="setLang('en')" style="margin-top:10px;">English</button>
-</div>
-
-<!-- POURQUOI NOUS -->
-<div class="block">
-  <h2 id="whyTitle">Pourquoi nous choisir</h2>
-  <div class="why">
-    <div class="w1" id="w1">Aide à l’obtention du billet d’avion et préparation du départ</div>
-    <div class="w2" id="w2">Accompagnement professionnel et administratif sécurisé</div>
-    <div class="w3" id="w3">Suivi humain personnalisé du début jusqu’à votre voyage</div>
-  </div>
-</div>
-
-<!-- FORMULAIRE -->
-<div class="block">
-  <h2 id="formTitle">Veuillez remplir ce formulaire</h2>
-
-  <div class="question">
-    <label id="q1l">1. Nom & Prénom</label>
-    <input id="q1">
+  <!-- POURQUOI -->
+  <div class="block gray">
+    <h3 id="whyTitle">Pourquoi nous choisir</h3>
+    <ol id="whyList">
+      <li>Assistance pour le billet d’avion</li>
+      <li>Recherche de logement en Europe</li>
+      <li>Orientation administrative complète</li>
+      <li>Conseils personnalisés selon votre profil</li>
+      <li>Accompagnement jusqu’au départ</li>
+    </ol>
   </div>
 
-  <div class="question">
-    <label id="q2l">2. Profession actuelle</label>
-    <input id="q2">
+  <!-- ACCOMPAGNEMENT -->
+  <div class="block beige">
+    <h3 id="accTitle">Accompagnement professionnel</h3>
+    <p id="accText">
+      Avec Euro-Imigrations, vous bénéficiez d’un suivi humain,
+      sérieux et professionnel du début jusqu’à votre voyage.
+    </p>
   </div>
 
-  <div class="question">
-    <label id="q3l">3. Pays d’origine</label>
-    <input id="q3">
-  </div>
+  <!-- FORMULAIRE -->
+  <section id="formSection">
+    <p id="formIntro">Veuillez remplir ce formulaire afin d’être orienté efficacement.</p>
 
-  <div class="question">
-    <label id="q4l">4. Pays de destination souhaité</label>
-    <input id="q4">
-  </div>
+    <div class="form-box">
+      <div class="question">
+        <span>1</span>
+        <input id="nom" placeholder="Nom">
+      </div>
+      <div class="question">
+        <span>2</span>
+        <input id="travail" placeholder="Profession">
+      </div>
+      <div class="question">
+        <span>3</span>
+        <input id="pays" placeholder="Pays d'origine">
+      </div>
+      <div class="question">
+        <span>4</span>
+        <input id="destination" placeholder="Pays souhaité">
+      </div>
+      <div class="question">
+        <span>5</span>
+        <input id="langues" placeholder="Langues parlées">
+      </div>
+    </div>
 
-  <div class="question">
-    <label id="q5l">5. Langues parlées</label>
-    <input id="q5">
-  </div>
+    <button class="btn-next" onclick="nextStep()">Suivant</button>
+  </section>
 
-  <button class="btn-wa" onclick="sendWhatsApp()" id="btnWa">
-    Discuter avec un agent
-  </button>
+  <!-- PAGE FINALE -->
+  <section id="finalSection" class="hidden">
+    <div class="block gray">
+      <h3>Informations enregistrées</h3>
+      <p>
+        Veuillez discuter avec un agent Euro-Imigrations
+        pour plus d’informations personnalisées.
+      </p>
+
+      <a id="whatsappBtn" class="btn-whatsapp" target="_blank">
+        Discuter avec un agent
+      </a>
+    </div>
+  </section>
+
 </div>
 
 <footer>
-Merci d’avoir choisi Euro-Imigrations<br>
-© 2026 Euro-Imigrations
+  Merci d’avoir choisi Euro-Imigrations<br>
+  © 2026 Euro-Imigrations
 </footer>
 
-</div>
-
 <script>
-const phone = "237696246114";
+function nextStep() {
+  const data = {
+    nom: nom.value,
+    travail: travail.value,
+    pays: pays.value,
+    destination: destination.value,
+    langues: langues.value
+  };
 
-/* ===== WHATSAPP ===== */
-function sendWhatsApp() {
-  const msg =
-`Bonjour, je souhaite des informations sur l'immigration vers l'Europe.
+  const message =
+`Bonjour, je souhaite en savoir plus sur l'immigration vers l'Europe.
 
-Nom: ${q1.value}
-Profession: ${q2.value}
-Pays d'origine: ${q3.value}
-Destination: ${q4.value}
-Langues: ${q5.value}`;
+Nom : ${data.nom}
+Profession : ${data.travail}
+Pays d'origine : ${data.pays}
+Pays souhaité : ${data.destination}
+Langues parlées : ${data.langues}`;
 
-  window.open(
-    "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg),
-    "_blank"
-  );
+  const phone = "237696246114"; // 🔴 REMPLACE ICI
+  whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  formSection.classList.add("hidden");
+  finalSection.classList.remove("hidden");
 }
 
-/* ===== LANGUES ===== */
 function setLang(lang) {
-  if(lang === "en") {
-    whyTitle.innerText = "Why choose us";
-    w1.innerText = "Help with flight ticket and departure preparation";
-    w2.innerText = "Professional and secure administrative support";
-    w3.innerText = "Human follow-up from start to your journey";
-
-    formTitle.innerText = "Please fill out this form";
-    q1l.innerText = "1. Full name";
-    q2l.innerText = "2. Current profession";
-    q3l.innerText = "3. Country of origin";
-    q4l.innerText = "4. Desired destination country";
-    q5l.innerText = "5. Spoken languages";
-
-    btnWa.innerText = "Chat with an agent";
+  if (lang === "de") {
+    whyTitle.innerText = "Warum uns wählen";
+    accTitle.innerText = "Professionelle Begleitung";
+    accText.innerText = "Menschliche und professionelle Betreuung bis zur Abreise.";
+    formIntro.innerText = "Bitte füllen Sie das Formular aus.";
   } else {
     location.reload();
   }
